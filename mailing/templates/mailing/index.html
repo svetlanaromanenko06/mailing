@@ -1,0 +1,52 @@
+{% extends 'mailing/base.html' %}
+{% block title %}
+    Mailing
+{% endblock %}
+{% block content %}
+    <div class="px-4 py-5 text-center">
+        <h1 class="display-5 fw-bold text-body-emphasis">Mailing</h1>
+        <p class="lead mb-4">Добро пожаловать в наш сервис почтовых рассылок</p>
+        <div class="row justify-content-center">
+            {% for blog in random_blogs %}
+            <div class="col-3 mx-2 card">
+                <img src="/media/{{ blog.image }}" class="card-img-top mx-auto d-block" alt="No image" style="width: 10vw; height: 10vw">
+                <div class="card-body">
+                    <h5 class="card-title">{{ blog.title }}</h5>
+                    <p class="card-text">{{ blog.description }}</p>
+                </div>
+                <div class="card-footer">
+                    <p>Опубликовано {{ blog.creation_date|date:"d M Y" }}</p>
+                    <p class="text-muted">{{ blog.views_count }} просмотров</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-lg-3 mx-auto mt-5">
+
+            <table class="table table-striped text-start">
+                <thead>
+                <tr>
+                    <th scope="col">Описание</th>
+                    <th scope="col">Всего</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Всего рассылок</td>
+                    <td>{{ total_mailings }}</td>
+                </tr>
+                <tr>
+                    <td><span class="fw-bold">Активные</span> рассылки</td>
+                    <td>{{ active_mailings }}</td>
+                </tr>
+                <tr>
+                    <td>Количества уникальных клиентов</td>
+                    <td>{{ total_clients }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+{% endblock %}

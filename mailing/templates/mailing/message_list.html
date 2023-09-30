@@ -1,0 +1,58 @@
+{% extends 'mailing/base.html' %}
+{% block content %}
+    <div>
+        <div class="row mt-2">
+            <div class="col m-2"><br>
+                {% if not perms.mail.can_manager_view %}
+                    <h2 align="center">Список ваших сообщений для рассылки</h2>
+                    <br>
+                    <div class="row mt-2">
+                        <div class="col m-2">
+                            <a class="btn btn-outline-primary" href="{% url 'mail:message_create' %}">Добавить новое
+                                сообщение</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <h2 align="center">Все сообщения</h2>
+                    <br>
+                {% endif %}
+                {% if message_list %}
+                    <br>
+                    <table class="table">
+                        <thead>
+                        <tr class="table-success">
+                            <th>№</th>
+                            <th>Тема сообщения</th>
+                            <th>Текст сообщения</th>
+                            <th>Действия с сообщением</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for message in message_list %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ message.message_subject }}</td>
+                                <td>{{ message.message|slice:":120" }}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="{% url 'mail:message_view' message.pk %}"
+                                           class="btn btn-sm btn-outline-secondary">Посмотреть</a>
+                                        {% if not perms.mail.can_manager_view %}
+                                            <a href="{% url 'mail:message_update' message.pk %}"
+                                               class="btn btn-sm btn-outline-primary">Редактировать</a>
+                                            <a href="{% url 'mail:message_delete' message.pk %}"
+                                               class="btn btn-sm btn-outline-danger">Удалить</a>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}<br>
+                    <p align="center">Нет сообщений</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

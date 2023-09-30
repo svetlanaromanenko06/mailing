@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Сервис рассылок</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="canonical" href="https://bootstrap-4.ru/docs/5.3/examples/headers/">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+
+<body>
+<header class="p-3 text-bg-success">
+    <div class="d-flex flex-column flex-md-row align-items-center p-2 px-md-3">
+        <h5 class="my-0 mr-md-auto font-weight-normal">Сервис рассылок</h5>
+    </div>
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                    <use xlink:href="#bootstrap"/>
+                </svg>
+            </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="{% url 'mailing:index' %}" class="nav-link px-2 text-prymary">Главная</a></li>
+                <li><a href="{% url 'mailing:mailing_list' %}" class="nav-link px-2 text-prymary">Рассылки</a></li>
+                <li><a href="{% url 'mailing:message_list' %}" class="nav-link px-2 text-prymary">Сообщения</a></li>
+                <li><a href="{% url 'mailing:client_list' %}" class="nav-link px-2 text-prymary">Клиенты</a></li>
+                <li><a href="{% url 'mailing:log_list' %}" class="nav-link px-2 text-prymary">Логи рассылки</a></li>
+                <li><a href="{% url 'blog:blog_list' %}" class="nav-link px-2 text-prymary">Блог</a></li>
+            </ul>
+            <div class="text-end">
+               {# {% if user.is_authenticated %}    #}
+                    <a class="btn btn-outline-prymary me-4" href="#">Выйти</a>
+                    <a class="btn btn-warning" href="#">Мой профиль</a>
+               {# {% else %}   #}
+                    <a class="btn btn-outline-prymary me-4" href="#">Войти</a>
+                    <a class="p-2 btn btn-warning" href="#">Регистрация</a>
+               {# {% endif %}       #}
+            </div>
+
+        </div>
+    </div>
+</header>
+
+{% block content %}
+{% endblock %}
+
+<div class="container">
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+            <div class="col-12 col-md">
+                Сервис рассылок
+                <small class="d-block mb-3 text-muted">&copy; {% now 'Y' %}</small>
+            </div>
+            <div class="col-6 col-md">
+                <h5>Категории</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted" href="{% url 'mailing:mailing_list' %}">Рассылки</a></li>
+                    <li><a class="text-muted" href="#">Полезные статьи</a></li>
+                    <li><a class="text-muted" href="#">Защита от SPAM</a></li>
+                    <li><a class="text-muted" href="#">Настройки</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5>Дополнительно</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="{% url 'blog:blog_list' %}" href="#">Мы пишем</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5>О нас</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted" href="#">Контакты</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="/static/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+</body>
+</html>

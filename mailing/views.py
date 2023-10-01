@@ -17,7 +17,7 @@ class ClientListView(LoginRequiredMixin, ListView):
 class ClientCreateView(LoginRequiredMixin, CreateView):
     model = Client
     form_class = ClientForm
-    success_url = reverse_lazy('mail:clients_list')
+    success_url = reverse_lazy('mailing:clients_list')
 
     def form_valid(self, form):
         self.object = form.save()
@@ -34,11 +34,11 @@ class ClientDetailView(LoginRequiredMixin, DetailView):
 class ClientUpdateView(LoginRequiredMixin, UpdateView):
     model = Client
     form_class = ClientForm
-    success_url = reverse_lazy('mail:clients_list')
+    success_url = reverse_lazy('mailing:clients_list')
 
 class ClientDeleteView(LoginRequiredMixin, DeleteView):
     model = Client
-    success_url = reverse_lazy('mail:clients_list')
+    success_url = reverse_lazy('mailing:clients_list')
 
 class IndexView(TemplateView):
     """Класс отображения главной страницы сервиса"""

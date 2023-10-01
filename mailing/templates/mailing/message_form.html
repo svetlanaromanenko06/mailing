@@ -1,4 +1,4 @@
-{% extends 'mail/base.html' %}
+{% extends 'mailing/base.html' %}
 {% block content %}
     <br>
     <h2 align="center">
@@ -26,7 +26,7 @@
                             </button>
                         </form>
                         <br>
-                        <a align="center " href="{% url 'mail:message_list' %}"
+                        <a align="center " href="{% url 'mailing:message_list' %}"
                            class="button">Назад к списку сообщений</a>
                     </div>
                 </div>
